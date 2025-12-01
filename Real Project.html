@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Real Project - Gerenciamento e Consultoria</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* Variáveis CSS para Cores e Estilo Moderno */
+        :root {
+            --cor-primaria: #004d99; /* Azul Corporativo Moderno */
+            --cor-secundaria: #ffc107; /* Amarelo/Dourado de Destaque */
+            --cor-fundo-claro: #f8f9fa; /* Fundo mais leve */
+            --cor-fundo-escuro: #212529; /* Fundo do Header */
+            --cor-texto-escuro: #343a40;
+            --cor-texto-claro: #fff;
+        }
+
+        /* RESET & BASE */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif; /* Aplicando a nova fonte */
+            line-height: 1.6;
+            color: var(--cor-texto-escuro);
+            background: var(--cor-fundo-claro);
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        a {
+            text-decoration: none;
+            color: var(--cor-primaria);
+            transition: color 0.3s;
+        }
+
+        a:hover {
+            color: var(--cor-secundaria);
+        }
+
+        /* --- HEADER & NAVBAR --- */
+        header {
+            background: var(--cor-fundo-escuro);
+            color: var(--cor-texto-claro);
+            padding: 15px 40px;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: auto;
+        }
+
+        .logo {
+            font-size: 30px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo .symbol {
+            font-size: 32px;
+            color: var(--cor-secundaria);
+            margin-right: 10px;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 30px;
+        }
+
+        nav ul li a {
+            color: var(--cor-texto-claro);
+            font-weight: 400;
+            padding: 5px 0;
+            position: relative;
+        }
+
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background-color: var(--cor-secundaria);
+            transition: width 0.3s ease;
+        }
+
+        nav ul li a:hover::after {
+            width: 100%;
+        }
+
+        /* --- HERO/BANNER --- */
+        #banner {
+            max-width: 100%;
+            overflow: hidden;
+            background: var(--cor-primaria);
+            text-align: center;
+            padding-bottom: 20px;
+        }
+
+        .banner-container {
+            max-width: 1500px;
+            margin: 0 auto;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2); 
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .banner-image {
+            width: 100%;
+            height: 400px; 
+            object-fit: cover;
+            display: block;
+        }
+
+        /* --- CARDS DE DESTAQUE --- */
+        #destaques {
+            padding: 80px 20px;
+            text-align: center;
+            background: #fff;
+        }
+
+        .card-container {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 40px;
+            flex-wrap: wrap; 
+        }
+
+        .card {
+            background: var(--cor-primaria); 
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); 
+            width: 300px;
+            text-align: left;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3); 
+        }
+
+        .card h3 {
+            color: var(--cor-secundaria); 
+            font-size: 24px;
+            margin-bottom: 15px;
+            border-bottom: 2px solid var(--cor-secundaria); 
+            padding-bottom: 5px;
+            display: inline-block;
+        }
+
+        .card p {
+            color: var(--cor-texto-claro); 
+            font-size: 14px;
+        }
+
+        /* --- SEÇÃO QUEM SOMOS (AGORA UM CARD FLUTUANTE) --- */
+        #quem-somos {
+            padding: 80px 20px; 
+            text-align: center; 
+            background: var(--cor-fundo-claro); 
+        }
+
+        .card-quem-somos {
+            max-width: 1000px; 
+            margin: auto; 
+            background: var(--cor-primaria); 
+            color: var(--cor-texto-claro); 
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2); 
+            display: flex; 
+            gap: 40px;
+            align-items: center; 
+            text-align: left;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .card-quem-somos:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .card-quem-somos h2 {
+            font-size: 32px;
+            color: var(--cor-secundaria); 
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+
+        .card-quem-somos .about-text {
+            flex: 1;
+        }
+        
+        .card-quem-somos .about-image {
+            flex: 0 0 350px; 
+            max-width: 350px; 
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25); 
+        }
+
+        /* --- FOOTER (CONTATO) --- */
+        footer {
+            background: var(--cor-primaria);
+            color: var(--cor-texto-claro);
+            padding: 40px 20px;
+            position: relative; /* Para posicionar a logo no canto */
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: auto;
+            text-align: left;
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 60px; /* Aumenta o espaçamento entre as colunas */
+            align-items: flex-start; 
+            padding-bottom: 30px; /* Espaço para o copyright e logo */
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2); /* Linha divisória sutil */
+            margin-bottom: 20px;
+        }
+
+        .contact-info h4 {
+            font-size: 22px; /* Título um pouco maior */
+            color: var(--cor-secundaria); 
+            margin-bottom: 25px; /* Mais espaçamento */
+            font-weight: 600; /* Levemente mais bold */
+        }
+        
+        .social-links { 
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        .social-links h4 {
+            font-size: 22px; /* Título um pouco maior */
+            color: var(--cor-texto-claro); /* Mantém branco para Mídias Sociais */
+            margin-bottom: 25px; /* Mais espaçamento */
+            font-weight: 600;
+        }
+        
+        .social-links a {
+            color: var(--cor-texto-claro);
+            display: block; 
+            margin-bottom: 10px; /* Mais espaçamento entre os links */
+            font-size: 15px; /* Levemente maior */
+            position: relative;
+            padding-left: 15px; /* Espaço para um possível ícone decorativo invisível */
+        }
+
+        .social-links a::before {
+            content: '•'; /* Pequeno ponto como marcador */
+            color: var(--cor-secundaria);
+            position: absolute;
+            left: 0;
+            font-size: 16px;
+            line-height: 1;
+        }
+        
+        .social-links a:hover {
+             color: var(--cor-secundaria);
+             text-decoration: none; /* Remove sublinhado padrão */
+        }
+
+        .contact-info strong {
+             font-weight: 700;
+             display: block;
+             margin-bottom: 8px; /* Mais espaçamento */
+             font-size: 16px; /* Texto um pouco maior */
+        }
+
+        .contact-info p {
+            margin-bottom: 6px; /* Mais espaçamento */
+            font-size: 14px;
+        }
+        
+        .contact-info p:nth-of-type(3) { 
+            margin-top: 20px; /* Mais espaçamento entre blocos */
+        }
+
+        .contact-info a {
+            color: var(--cor-texto-claro);
+            transition: color 0.3s;
+        }
+        .contact-info a:hover {
+            color: var(--cor-secundaria);
+        }
+
+        .footer-bottom {
+            display: flex;
+            justify-content: space-between; /* Alinha copyright à esquerda e logo à direita */
+            align-items: center;
+            max-width: 1200px;
+            margin: auto;
+            padding-top: 10px;
+        }
+
+        .footer-copyright {
+            font-size: 12px;
+            text-align: left;
+        }
+
+        .footer-logo {
+            font-size: 22px; /* Tamanho da logo no footer */
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            color: var(--cor-texto-claro);
+        }
+        
+        .footer-logo .symbol {
+            font-size: 24px; /* Tamanho do símbolo da logo no footer */
+            color: var(--cor-secundaria);
+            margin-right: 8px;
+        }
+        
+        /* --- RESPONSIVIDADE --- */
+        @media (max-width: 768px) {
+            header, nav, #quem-somos {
+                flex-direction: column;
+                padding: 15px 20px;
+            }
+
+            nav ul {
+                gap: 15px;
+                margin-top: 10px;
+            }
+
+            #quem-somos .card-quem-somos {
+                flex-direction: column; 
+                padding: 30px;
+            }
+            
+            .card-quem-somos .about-image {
+                order: -1; 
+                width: 100%;
+                max-width: none;
+                margin-bottom: 20px;
+            }
+
+            .card {
+                width: 100%;
+                max-width: 400px;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+                gap: 30px;
+            }
+            
+            .social-links {
+                align-items: center; 
+            }
+            
+            .social-links a {
+                 text-align: center;
+                 padding-left: 0; /* Remove padding para alinhamento central */
+            }
+            .social-links a::before {
+                content: ''; /* Remove o marcador em mobile se estiver centralizado */
+            }
+
+            .footer-bottom {
+                flex-direction: column-reverse; /* Coloca logo acima do copyright em mobile */
+                text-align: center;
+                gap: 15px;
+            }
+
+            .footer-copyright, .footer-logo {
+                text-align: center;
+                margin-bottom: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <nav>
+            <div class="logo"><span class="symbol">⚜️</span> <strong> Real Project</strong></div>
+            <ul>
+                <li><a href="#destaques">Treinamentos</a></li>
+                <li><a href="#destaques">Serviços</a></li>
+                <li><a href="#quem-somos">Clientes</a></li>
+                <li><a href="#contato">Contato</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section id="banner">
+        <div class="banner-container">
+            <img src="URL_DA_SUA_IMAGEM_DO_BANNER" 
+                 alt="Soluções para Gerenciamento de Projetos" 
+                 class="banner-image">
+        </div>
+    </section>
+
+    <section id="destaques">
+        <div class="card-container">
+            <div class="card">
+                <h3>Treinamentos</h3>
+                <p>Capacitação profissional nos modelos e frameworks de melhores práticas em <strong>Gerenciamento de Projetos</strong> e <strong>Gerenciamento de Tecnologia da Informação</strong>.</p>
+            </div>
+            <div class="card">
+                <h3>Serviços</h3>
+                <p><strong>Consultoria</strong>, Serviços Profissionais, Mentoring e Coaching para profissionais e empresas. Transformamos sua estratégia em resultados reais.</p>
+            </div>
+            <div class="card">
+                <h3>Produtos</h3>
+                <p><strong>Ferramentas e Soluções customizadas</strong> para o melhor desempenho dos processos e serviços. Otimize sua performance com tecnologia de ponta.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="quem-somos">
+        <div class="card-quem-somos">
+            <img src="URL_DA_SUA_IMAGEM_DA_EQUIPE" 
+                 alt="Nossa Equipe Especializada" 
+                 class="about-image">
+            
+            <div class="about-text">
+                <h2>Quem Somos</h2>
+                <p>Os profissionais da <strong> Real Project</strong> possuem vasta experiência na realização de serviços de consultoria em gerenciamento de projetos, gerenciamento de serviços de TI e Outsourcing em TI.</p>
+                <p>Nossos especialistas trabalham para transformar em sucessos reais os projetos, de acordo com as estratégias e expectativas de nossos clientes. Nós unimos <strong>expertise técnica</strong> com <strong>visão estratégica de negócios</strong>.</p>
+            </div>
+        </div>
+    </section>
+
+    <footer id="contato">
+        <div class="footer-content">
+            <div class="contact-info">
+                <h4>CONTATO</h4>
+                <p><strong>MATRIZ SÃO PAULO</strong></p>
+                <p>Endereço: Rua Tenente Gomes Ribeiro, 78 - 1o Andar - São Paulo/SP</p>
+                <p>CEP: 04038-040</p>
+                <p>Tel/Fax: <a href="tel:+551126396246">+55 11 2639-6246</a></p>
+                <p>E-mail: <a href="mailto:info@realproject.com.br">info@realproject.com.br</a></p>
+            </div>
+
+            <div class="social-links">
+                <h4>Mídias Sociais</h4>
+                <a href="#">Facebook</a>
+                <a href="#">Instagram</a>
+                <a href="#">LinkedIn</a>
+                <a href="#">YouTube</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p class="footer-copyright">© 2025 <strong> Real Project</strong>. Todos os direitos reservados.</p>
+            <div class="footer-logo"><span class="symbol">⚜️</span> <strong> Real Project</strong></div>
+        </div>
+    </footer>
+
+</body>
+</html>
